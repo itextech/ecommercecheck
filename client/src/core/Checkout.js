@@ -12,6 +12,7 @@ import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
 import "braintree-web";
 import DropIn from "braintree-web-drop-in-react";
+import address from './adress';
 
 const Checkout = ({ products }) => {
   const [data, setData] = useState({
@@ -124,20 +125,73 @@ const Checkout = ({ products }) => {
       });
   };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   const showDropIn = () => (
     <div onBlur={() => setData({ ...data, error: "" })}>
       {data.clientToken !== null && products.length > 0 ? (
         <div>
-          <div className="gorm-group mb-3">
+          {/* <div className="gorm-group mb-3">
             <label className="text-muted">Delivery address:</label>
             <textarea
               onChange={handleAddress}
               className="form-control"
               value={data.address}
               placeholder="Type your delivery address here..."
-            />
-          </div>
+            /> */}
+            
+          {/* </div> */}
+          <div className="col-xs-12">
+                <label>Country</label>
+                <input type="text" class="form-control input-lg" />
+              </div>
+              <div class="col-xs-12">
+                <br />
+              </div>
+              <div class="col-xs-6">
+                <label>State</label>
+                <input class="form-control input-lg" type="text"  inputmode="alphabet" />
+                </div>
+              <div class="col-xs-6">
+                <label>City</label>
+                <input class="form-control input-lg" type="text"  inputmode="alphabet" />
+                </div>
+                <div class="col-xs-6">
+                <label>Zip</label>
+                <input class="form-control input-lg" type="text" pattern="[0-9]*" inputmode="numeric" />
+              </div>
+                <div class="col-xs-6">
+                <label>Address line 1</label>
+                <input class="form-control input-lg" type="text" pattern="[0-9]*" inputmode="numeric" />
+              </div>
+                <div class="col-xs-6">
+                <label>Address line 2</label>
+                <input class="form-control input-lg" type="text" pattern="[0-9]*" inputmode="numeric" />
+              </div>
+              <div class="col-xs-6">
+                <br />
+              </div>
+          
 
+
+
+        
           <DropIn
             options={{
               authorization: data.clientToken,
@@ -147,10 +201,12 @@ const Checkout = ({ products }) => {
             }}
             onInstance={(instance) => (data.instance = instance)}
           />
+          
           <button
             onClick={buy}
             id="showhide"
             className="btn btn-success btn-block"
+            
           >
             Pay
           </button>

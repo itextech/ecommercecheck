@@ -81,15 +81,16 @@ const Orders = () => {
       </select>
     </div>
   );
-
+console.log(orders);
   return (
+   <>
     <Layout
       title="Orders"
       description={`G'day ${user.name}, you can manage all the orders here`}
       className="container"
     >
-      <div className="my-5">
-        <div align="center" className="container">
+            <div className="my-5">
+            <div align="center" className="container">
           {goBack()}
           {showOrdersLength()}
           {orders.map((o, oIndex) => {
@@ -112,7 +113,7 @@ const Orders = () => {
                     </li>
                     <li className="list-group-item">Amount: ${o.amount}</li>
                     <li className="list-group-item">
-                      Ordered by: {o.user.name}
+                      Ordered by: {o.user?o.user.name:"unknown"}
                     </li>
                     <li className="list-group-item">
                       Ordered on: {moment(o.createdAt).fromNow()}
@@ -147,6 +148,7 @@ const Orders = () => {
         </div>
       </div>
     </Layout>
+   </>
   );
 };
 
