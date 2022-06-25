@@ -12,7 +12,10 @@ import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
 import "braintree-web";
 import DropIn from "braintree-web-drop-in-react";
-import address from './adress';
+
+
+
+
 
 const Checkout = ({ products }) => {
   const [data, setData] = useState({
@@ -40,6 +43,68 @@ const Checkout = ({ products }) => {
   useEffect(() => {
     getToken(userId, token); // eslint-disable-next-line
   }, []);
+
+    
+const countries=[
+  {id:"",name:" Alabama"},
+  {id:"",name:" Alaska"},
+  {id:"",name:" Arizona"},
+  {id:"",name:" Arkansas"},
+  {id:"",name:"California "},
+  {id:"",name:" Colorado"},
+  {id:"",name:" Connecticut"},
+  {id:"",name:"Delaware "},
+  {id:"",name:" Florida"},
+  {id:"",name:"Georgia "},
+  {id:"",name:"Hawaii "},
+  {id:"",name:" Idaho"},
+  {id:"",name:"Illinois "},
+  {id:"",name:" Indiana"},
+  {id:"",name:" Iowa"},
+  {id:"",name:"Kansas "},
+  {id:"",name:" Kentucky"},
+  {id:"",name:"Louisiana "},
+  {id:"",name:" Maine"},
+  {id:"",name:"Maryland "},
+  {id:"",name:"Massachusetts "},
+  {id:"",name:"Michigan "},
+  {id:"",name:"Minnesota "},
+  {id:"",name:"Mississippi "},
+  {id:"",name:"Missouri "},
+  {id:"",name:"Montana "},
+  {id:"",name:"Nebraska "},
+  {id:"",name:" Nevada"},
+  {id:"",name:"New Hampshire "},
+  {id:"",name:" New Hampshire"},
+  {id:"",name:"New Jersey "},
+  {id:"",name:"New Mexico "},
+  {id:"",name:"New York "},
+  {id:"",name:"North Carolina "},
+  {id:"",name:"North Dakota "},
+  {id:"",name:"Ohio "},
+  {id:"",name:"Oklahoma "},
+  {id:"",name:"Oregon "},
+  {id:"",name:"Pennsylvania "},
+  {id:"",name:" Rhode Island"},
+  {id:"",name:"South Carolina "},
+  {id:"",name:" South Dakota "},
+  {id:"",name:"Tennessee "},
+  {id:"",name:"Texas "},
+  {id:"",name:" Utah"},
+  {id:"",name:"Vermont "},
+  {id:"",name:"Virginia "},
+  {id:"",name:"Wyoming "},
+  {id:"",name:"Washington "},
+  {id:"",name:"West Virginia "},
+  {id:"",name:" Wisconsin"},
+
+  
+  
+];
+const[country,setCountry]=useState([]);
+useEffect(()=>{
+  setCountry(countries);
+},[])
 
   const handleAddress = (event) => {
     setData({ ...data, address: event.target.value });
@@ -124,25 +189,7 @@ const Checkout = ({ products }) => {
         setData({ ...data, error: error.message });
       });
   };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
+ 
   const showDropIn = () => (
     <div onBlur={() => setData({ ...data, error: "" })}>
       {data.clientToken !== null && products.length > 0 ? (
@@ -154,44 +201,53 @@ const Checkout = ({ products }) => {
               className="form-control"
               value={data.address}
               placeholder="Type your delivery address here..."
-            /> */}
-            
-          {/* </div> */}
+            />
+          </div> */}
+          
           <div className="col-xs-12">
-                <label>Country</label>
-                <input type="text" class="form-control input-lg" />
+           
+
+
+
+
+
+              
+            
+               
+                <input type="text" class="form-control input-lg" placeholder="City" />
               </div>
               <div class="col-xs-12">
                 <br />
               </div>
-              <div class="col-xs-6">
-                <label>State</label>
-                <input class="form-control input-lg" type="text"  inputmode="alphabet" />
-                </div>
-              <div class="col-xs-6">
-                <label>City</label>
-                <input class="form-control input-lg" type="text"  inputmode="alphabet" />
-                </div>
+              
                 <div class="col-xs-6">
-                <label>Zip</label>
-                <input class="form-control input-lg" type="text" pattern="[0-9]*" inputmode="numeric" />
+               
+                <input class="form-control input-lg" type="number" pattern="[0-9]*" inputmode="numeric" placeholder="Zip Code" />
               </div>
+              <br></br>
                 <div class="col-xs-6">
-                <label>Address line 1</label>
-                <input class="form-control input-lg" type="text" pattern="[0-9]*" inputmode="numeric" />
+               
+                <input class="form-control input-lg" type="text" pattern="[0-9]*" inputmode="numeric" placeholder="Street Address" />
               </div>
+              <br></br>
                 <div class="col-xs-6">
-                <label>Address line 2</label>
-                <input class="form-control input-lg" type="text" pattern="[0-9]*" inputmode="numeric" />
+               
+                <input class="form-control input-lg" type="text" pattern="[0-9]*" inputmode="numeric" placeholder="Apt, Suite, etc." />
               </div>
+              <br></br>
+                <div class="col-xs-6">
+               
+                <input class="form-control input-lg" type="number" pattern="[0-9]*" inputmode="numeric" placeholder="Phone Number" />
+              </div>
+              
               <div class="col-xs-6">
                 <br />
+
               </div>
-          
+               
+              
+           
 
-
-
-        
           <DropIn
             options={{
               authorization: data.clientToken,
@@ -201,12 +257,10 @@ const Checkout = ({ products }) => {
             }}
             onInstance={(instance) => (data.instance = instance)}
           />
-          
           <button
             onClick={buy}
             id="showhide"
             className="btn btn-success btn-block"
-            
           >
             Pay
           </button>
@@ -238,13 +292,36 @@ const Checkout = ({ products }) => {
 
   return (
     <div>
+      
       <h3>
         Total:<span className="lead text-success">${getTotal()}</span>
       </h3>
+      <br></br>
+      <div className="country">
+    
+    <select id="ddlCountry" className="form-control select-class" placeholder="State"  >
+     <option value="0">Select State</option>
+     {
+    country &&
+    country !==undefined?
+    country.map((ctr,index)=>{
+      return(
+        <option key={index}value={ctr.id}>{ctr.name}</option>
+      )
+
+    })
+    :"no country"
+
+  }
+  </select>
+  </div>
+  <br></br>
       {showLoading(data.loading)}
       {showSuccess(data.success)}
       {isAuthenticated() ? showError(data.error) : null}
       {showCheckout()}
+      
+      
     </div>
   );
 };
