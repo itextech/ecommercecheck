@@ -116,10 +116,14 @@ console.log(orders);
                       Ordered by: {o.user?o.user.name:"unknown"}
                     </li>
                     <li className="list-group-item">
-                      Ordered on: {moment(o.createdAt).fromNow()}
+                      Ordered on: {moment(o.createdAt).fromNow()}<br />
+                      Ordered on: {o.createdAt}
                     </li>
                     <li className="list-group-item">
                       Delivery address: {o.address}
+                    </li>
+                    <li className="list-group-item">
+                      Phone Number: {o.phoneNumber}
                     </li>
                   </ul>
 

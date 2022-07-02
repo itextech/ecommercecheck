@@ -204,46 +204,6 @@ useEffect(()=>{
             />
           </div> */}
           
-          <div className="col-xs-12">
-           
-
-
-
-
-
-              
-            
-               
-                <input type="text" class="form-control input-lg" placeholder="City" />
-              </div>
-              <div class="col-xs-12">
-                <br />
-              </div>
-              
-                <div class="col-xs-6">
-               
-                <input class="form-control input-lg" type="number" pattern="[0-9]*" inputmode="numeric" placeholder="Zip Code" />
-              </div>
-              <br></br>
-                <div class="col-xs-6">
-               
-                <input class="form-control input-lg" type="text" pattern="[0-9]*" inputmode="numeric" placeholder="Street Address" />
-              </div>
-              <br></br>
-                <div class="col-xs-6">
-               
-                <input class="form-control input-lg" type="text" pattern="[0-9]*" inputmode="numeric" placeholder="Apt, Suite, etc." />
-              </div>
-              <br></br>
-                <div class="col-xs-6">
-               
-                <input class="form-control input-lg" type="number" pattern="[0-9]*" inputmode="numeric" placeholder="Phone Number" />
-              </div>
-              
-              <div class="col-xs-6">
-                <br />
-
-              </div>
                
               
            
@@ -297,7 +257,41 @@ useEffect(()=>{
         Total:<span className="lead text-success">${getTotal()}</span>
       </h3>
       <br></br>
-      <div className="country">
+      
+  
+  
+  <div className="col-xs-12">
+           
+
+
+
+
+
+              
+            
+               
+           <input type="text" class="form-control input-lg" placeholder="City" />
+         </div>
+         <div class="col-xs-12">
+           <br />
+         </div>
+         
+           <div class="col-xs-6">
+          
+           <input class="form-control input-lg" type="number" pattern="[0-9]*" inputmode="numeric" placeholder="Zip Code" />
+         </div>
+         <br></br>
+           <div class="col-xs-6">
+          
+           <input class="form-control input-lg" type="text" pattern="[0-9]*" inputmode="numeric" placeholder="Street Address" />
+         </div>
+         <br></br>
+           <div class="col-xs-6">
+          
+           <input class="form-control input-lg" type="text" pattern="[0-9]*" inputmode="numeric" placeholder="Apt, Suite, etc." />
+         </div>
+         <br></br>
+         <div className="country">
     
     <select id="ddlCountry" className="form-control select-class" placeholder="State"  >
      <option value="0">Select State</option>
@@ -313,8 +307,18 @@ useEffect(()=>{
     :"no country"
 
   }
-  </select>
+        </select>
   </div>
+  <br></br>
+           <div class="col-xs-6">
+          
+           <input class="form-control input-lg" type="number" pattern="[0-9]*" inputmode="numeric" placeholder="Phone Number" />
+         </div>
+         
+         <div class="col-xs-6">
+           <br />
+
+         </div>
   <br></br>
       {showLoading(data.loading)}
       {showSuccess(data.success)}
