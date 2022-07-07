@@ -1,6 +1,8 @@
+import { API } from '../config';
+
 export const createCategory = async (userId,token,category) => {
     try {
-        const response = await fetch(`../api/category/create/${userId}`, {
+        const response = await fetch(`${API}/category/create/${userId}`, {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -18,7 +20,7 @@ export const createCategory = async (userId,token,category) => {
 
 export const createProduct = async (userId, token, product) => {
     try {
-        const response = await fetch(`../api/product/create/${userId}`, {
+        const response = await fetch(`${API}/product/create/${userId}`, {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -35,7 +37,7 @@ export const createProduct = async (userId, token, product) => {
 
 export const getCategories=async ()=>{
     try {
-        const res = await fetch(`/api/categories`, {
+        const res = await fetch(`${API}/categories`, {
             method: "GET"
         });
         return res.json();
@@ -46,7 +48,7 @@ export const getCategories=async ()=>{
 }
 export const listOrders=async (userId,token)=>{
     try {
-        const res = await fetch(`../api/orders/list/${userId}`, {
+        const res = await fetch(`${API}/orders/list/${userId}`, {
             method: "GET",
             headers: {
                 Accept: "application/json",
@@ -61,7 +63,7 @@ export const listOrders=async (userId,token)=>{
 };
 export const getStatusValues = async (userId, token) => {
     try {
-        const response = await fetch(`../api/order/status-values/${userId}`, {
+        const response = await fetch(`${API}/order/status-values/${userId}`, {
             method: "GET",
             headers: {
                 Accept: "application/json",
@@ -76,7 +78,7 @@ export const getStatusValues = async (userId, token) => {
 };
 export const updateOrderStatus = async (userId, token, orderId, status) => {
     try {
-        const response = await fetch(`../api/order/${orderId}/status/${userId}`, {
+        const response = await fetch(`${API}/order/${orderId}/status/${userId}`, {
             method: "PUT",
             headers: {
                 Accept: "application/json",
@@ -100,7 +102,7 @@ export const updateOrderStatus = async (userId, token, orderId, status) => {
  */
 
 export const getProducts = () => {
-    return fetch(`../api/products?limit=undefined`, {
+    return fetch(`${API}/products?limit=undefined`, {
         method: "GET"
     })
         .then(response => {
@@ -110,7 +112,7 @@ export const getProducts = () => {
 };
 
 export const deleteProduct = (productId, userId, token) => {
-    return fetch(`../api/product/${productId}/${userId}`, {
+    return fetch(`${API}/product/${productId}/${userId}`, {
         method: "DELETE",
         headers: {
             Accept: "application/json",
@@ -125,7 +127,7 @@ export const deleteProduct = (productId, userId, token) => {
 };
 
 export const getProduct = productId => {
-    return fetch(`/api/product/${productId}`, {
+    return fetch(`${API}/product/${productId}`, {
         method: "GET"
     })
         .then(response => {
@@ -135,7 +137,7 @@ export const getProduct = productId => {
 };
 
 export const updateProduct = (productId, userId, token, product) => {
-    return fetch(`../../../api/product/${productId}/${userId}`, {
+    return fetch(`${API}/product/${productId}/${userId}`, {
         method: "PUT",
         headers: {
             Accept: "application/json",

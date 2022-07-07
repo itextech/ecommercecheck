@@ -5,6 +5,7 @@
   "dependencies": {
     "braintree-web": "^3.64.2",
     "braintree-web-drop-in-react": "^1.1.1",
+    "dotenv": "^16.0.1",
     "moment": "^2.27.0",
     "query-string": "^6.13.1",
     "react": "^16.13.1",
@@ -22,12 +23,12 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "proxy": "http://localhost:8000",
+  
   "browserslist": {
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "n4ot op_mini all"
     ],
     "development": [
       "last 1 chrome version",

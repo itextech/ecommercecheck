@@ -35,6 +35,7 @@ const Home = () => {
     loadProductBySell();
   }, []);
   const show = () => (
+    <>
     <div className="container-fluid">
       <h2 className="mb-4">Best Sellers</h2>
       <div className="row">
@@ -53,6 +54,7 @@ const Home = () => {
         ))}
       </div>
     </div>
+    </>
   );
   const loading = () => (
     <div className="ui segment">
@@ -70,7 +72,29 @@ const Home = () => {
     >
       <div className="my-4">
         <Search />
-        {load === true ? loading() : show()}
+        {/* new changes`` */}
+        <h2 className="mb-4">Best Sellers</h2>
+      <div className="row">
+        {productBySell.map((product, i) => (
+          <div key={i} className="mb-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+            <Card product={product} />
+          </div>
+        ))}
+        </div>
+
+        <h2 className="mb-4">New Arrivals</h2>
+      <div className="row">
+        {productByArrival.map((product, i) => (
+          <div key={i} className="mb-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+            <Card product={product} />
+          </div>
+        ))}
+      </div>
+
+      {/* //ends changes */}
+
+
+        {/* {load === true ? loading() : show()} */}
       </div>
     </Layout>
   );

@@ -19,6 +19,7 @@ exports.read=(req,res)=>{
     return res.json(req.profile);
 }
 exports.update=(req,res)=>{
+    req.body.role = 0;//for user role as admin or common (0 for general and 1 for admin)
     User.findOneAndUpdate({_id:req.profile._id},{$set:req.body},{new:true},(err,user)=>{
         if(err){
             return res.status(400).json({error:'You are not authorized'})
