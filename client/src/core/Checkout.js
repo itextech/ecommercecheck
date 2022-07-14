@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
 import {
   // eslint-disable-next-line
   getProducts,
@@ -12,8 +13,12 @@ import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
 import "braintree-web";
 import DropIn from "braintree-web-drop-in-react";
+// import { isAuthenticated } from "../auth/index";s
 
 
+import "./card.css";
+
+const { user, token } = isAuthenticated();
 
 
 
@@ -43,6 +48,26 @@ const Checkout = ({ products }) => {
   useEffect(() => {
     getToken(userId, token); // eslint-disable-next-line
   }, []);
+
+
+
+
+  
+
+    function sendEmail(e) {
+        e.preventDefault();
+
+    emailjs.sendForm('service_1l5fm5f', 'template_nbfdebr', e.target, 'HBroR6S0G3q_o4oow')
+        .then((result) => {
+            console.log(result.text);
+        }, (error) => {
+            console.log(error.text);
+        });
+        e.target.reset()
+    }
+
+  
+
 
     
 const countries=[
@@ -193,102 +218,42 @@ useEffect(()=>{
   const showDropIn = () => (
     <div onBlur={() => setData({ ...data, error: "" })}>
       {data.clientToken !== null && products.length > 0 ? (
-        <div>
-          {/* <div className="gorm-group mb-3">
-            <label className="text-muted">Delivery address:</label>
-            <textarea
+        <>
+        {/* <div> */}
+          <div onChange={handleAddress}
+          className="form-control"
+          // value={data.address}
+          >
+            {/* <label className="text-muted">Delivery address:</label> */}
+            {/* <textarea
               onChange={handleAddress}
               className="form-control"
               value={data.address}
               placeholder="Type your delivery address here..."
-            />
-          </div> */}
+            /> */}
+          {/* </div> */}
           
                
-              
-           
-
-          <DropIn
-            options={{
-              authorization: data.clientToken,
-              paypal: {
-                flow: "vault",
-              },
-            }}
-            onInstance={(instance) => (data.instance = instance)}
-          />
-          <button
-            onClick={buy}
-            id="showhide"
-            className="btn btn-success btn-block"
-          >
-            Pay
-          </button>
-        </div>
-      ) : null}
-    </div>
-  );
-
-  const showError = (error) => (
-    <div
-      className="alert alert-danger"
-      style={{ display: error ? "" : "none" }}
-    >
-      {error}
-    </div>
-  );
-
-  const showSuccess = (success) => (
-    <div
-      className="alert alert-info"
-      style={{ display: success ? "" : "none" }}
-    >
-      Thanks! Your payment was successful!
-    </div>
-  );
-
-  const showLoading = (loading) =>
-    loading && <h2 className="text-danger">Loading...</h2>;
-
-  return (
-    <div>
-      
-      <h3>
-        Total:<span className="lead text-success">${getTotal()}</span>
-      </h3>
-      <br></br>
-      
-  
-  
-  <div className="col-xs-12">
-           
-
-
-
-
-
-              
-            
-               
-           <input type="text" class="form-control input-lg" placeholder="City" />
+                    
+           <input type="text" className="form-control input-lg" placeholder="City" />
          </div>
-         <div class="col-xs-12">
+         <div className="col-xs-12">
            <br />
          </div>
          
-           <div class="col-xs-6">
+           <div className="col-xs-6">
           
-           <input class="form-control input-lg" type="number" pattern="[0-9]*" inputmode="numeric" placeholder="Zip Code" />
+           <input className="form-control input-lg" type="number" pattern="[0-9]*" inputmode="numeric" placeholder="Zip Code" />
          </div>
          <br></br>
-           <div class="col-xs-6">
+           <div className="col-xs-6">
           
-           <input class="form-control input-lg" type="text" pattern="[0-9]*" inputmode="numeric" placeholder="Street Address" />
+           <input className="form-control input-lg" type="text" pattern="[0-9]*" inputmode="numeric" placeholder="Street Address" />
          </div>
          <br></br>
-           <div class="col-xs-6">
+           <div className="col-xs-6">
           
-           <input class="form-control input-lg" type="text" pattern="[0-9]*" inputmode="numeric" placeholder="Apt, Suite, etc." />
+           <input className="form-control input-lg" type="text" pattern="[0-9]*" inputmode="numeric" placeholder="Apt, Suite, etc." />
          </div>
          <br></br>
          <div className="country">
@@ -317,6 +282,149 @@ useEffect(()=>{
          
          <div class="col-xs-6">
            <br />
+           
+
+          <DropIn
+            options={{
+              authorization: data.clientToken,
+              paypal: {
+                flow: "vault",
+              },
+            }}
+            onInstance={(instance) => (data.instance = instance)}
+          />
+          <button
+            onClick={buy}
+            id="showhide"
+            className="btn btn-success btn-block"
+          >
+            Pay
+          </button>
+        </div>
+        </>
+      ) : null}
+    </div>
+    
+  );
+
+  const showError = (error) => (
+    <div
+      className="alert alert-danger"
+      style={{ display: error ? "" : "none" }}
+    >
+      {error}
+    </div>
+  );
+
+  const showSuccess = (success) => (
+    <div
+      className="alert alert-info"
+      style={{ display: success ? "" : "none" }}
+    >
+
+
+
+<div className="container">
+            <form onSubmit={sendEmail}>
+                    <div className="row pt-5 mx-auto">
+                      <div id="emailbolte">
+                        <div className="col-8 form-group mx-auto">
+                            <input type="text" className="form-control" placeholder="Name" value="itextech" name="name"/>
+                        </div>
+                        <div className="col-8 form-group pt-2 mx-auto">
+                            <input type="email" className="form-control" value={user.email} name="email"/>
+                        </div>
+                        <div className="col-8 form-group pt-2 mx-auto">
+                            <input type="text" className="form-control" placeholder="Subject" value="payment to itextech is confirmed" name="subject"/>
+                        </div>
+                        <div className="col-8 form-group pt-2 mx-auto">
+                            <textarea className="form-control" id="" cols="30" rows="8" placeholder="Your message" value="{$getTotal()} your payment was successfull" name="message"></textarea>
+                        </div>
+                        </div>
+                        </div>
+                        <div className="col-8 pt-3 mx-auto">
+                            <input type="submit" className="btn btn-info" value="send reciept on email"></input>  
+                        </div>
+                    
+                </form> 
+            </div>
+
+
+
+      Thanks! Your payment was successful!
+    </div>
+  );
+
+  const showLoading = (loading) =>
+    loading && <h2 className="text-danger">Loading...</h2>;
+
+  return (
+    <div>
+      
+      <h3>
+        Total:<span className="lead text-success">${getTotal()}</span>
+      </h3>
+      <br></br>
+      
+  
+  
+  <div className="col-xs-12">
+           
+
+
+
+
+
+              
+            
+{/*                
+           <input type="text" className="form-control input-lg" placeholder="City" />
+         </div>
+         <div className="col-xs-12">
+           <br />
+         </div>
+         
+           <div className="col-xs-6">
+          
+           <input className="form-control input-lg" type="number" pattern="[0-9]*" inputmode="numeric" placeholder="Zip Code" />
+         </div>
+         <br></br>
+           <div className="col-xs-6">
+          
+           <input className="form-control input-lg" type="text" pattern="[0-9]*" inputmode="numeric" placeholder="Street Address" />
+         </div>
+         <br></br>
+           <div className="col-xs-6">
+          
+           <input className="form-control input-lg" type="text" pattern="[0-9]*" inputmode="numeric" placeholder="Apt, Suite, etc." />
+         </div>
+         <br></br>
+         <div className="country">
+    
+    <select id="ddlCountry" className="form-control select-class" placeholder="State"  >
+     <option value="0">Select State</option>
+     {
+    country &&
+    country !==undefined?
+    country.map((ctr,index)=>{
+      return(
+        <option key={index}value={ctr.id}>{ctr.name}</option>
+      )
+
+    })
+    :"no country"
+
+  }
+        </select>
+  </div>
+  <br></br>
+           <div class="col-xs-6">
+          
+           <input class="form-control input-lg" type="number" pattern="[0-9]*" inputmode="numeric" placeholder="Phone Number" />
+         </div>
+         
+         <div class="col-xs-6">
+           <br /> */}
 
          </div>
   <br></br>
