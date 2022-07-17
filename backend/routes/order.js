@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-const { requireSignin, isAuth,isAdmin } = require("../controllers/auth");
-const { userById, addOrderToUserHistory } = require("../controllers/user");
-const { create,listOrders,getStatusValues,orderById,updateOrderStatus } = require("../controllers/order");
-const { decreaseQuantity } = require("../controllers/product");
+const { requireSignin, isAuth,isAdmin } = require("../controller/auth");
+const { userById, addOrderToUserHistory } = require("../controller/user");
+const { create,listOrders,getStatusValues,orderById,updateOrderStatus } = require("../controller/order");
+const { decreaseQuantity } = require("../controller/product");
 
 router.post(
   "/order/create/:userId",

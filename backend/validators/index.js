@@ -1,4 +1,4 @@
-exports.userSignupValidator=(req,res,next)=>{
+exports.userSignupvalidators=(req,res,next)=>{
     req.check('name','Name is required').notEmpty()
     req.check('email','Email must be 3 to 32 chars')
         .matches(/.+\@.+\..+/)

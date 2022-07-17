@@ -1,9 +1,9 @@
 const express = require("express");
 const router=express.Router();
 
-const {requireSignin,isAuth,isAdmin}=require('../controllers/auth');
-const {userById}=require('../controllers/user');
-const {create,productById,photo,listBySearch,listSearch,listCategories,read,remove,update,list,related}=require('../controllers/product');
+const {requireSignin,isAuth,isAdmin}=require('../controller/auth');
+const {userById}=require('../controller/user');
+const {create,productById,photo,listBySearch,listSearch,listCategories,read,remove,update,list,related}=require('../controller/product');
 
 router.get('/product/:productId',read);
 router.post('/product/create/:userId',requireSignin,isAuth,isAdmin,create);
