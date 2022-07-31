@@ -4,7 +4,7 @@ require("dotenv").config();
 const morgan = require("morgan");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const expressvalidators = require("express-validators");
+const expressvalidator = require("express-validator");
 const helmet = require("helmet");
 const path = require("path");
 const compression = require("compression");
@@ -38,7 +38,7 @@ app.use(
   })
 );
 app.use(cookieParser());
-app.use(expressvalidators());
+app.use(expressvalidator());
 app.use(cors());
 
 // routes

@@ -2,7 +2,7 @@ const express = require("express");
 const router=express.Router();
 const {requireSignin,isAuth,isAdmin}=require('../controller/auth');
 const {userById,read,update,purchaseHistory}=require('../controller/user');
-//const {userSignupvalidators}=require("../validators")
+//const {userSignupvalidator}=require("../validator")
 router.get('/secret/:userId',requireSignin,isAuth,isAdmin,(req,res)=>{
     res.json({
         user:req.profile
