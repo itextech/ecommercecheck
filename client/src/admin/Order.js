@@ -120,10 +120,10 @@ console.log(orders);
                       Ordered on: {o.createdAt}
                     </li>
                     <li className="list-group-item">
-                      Delivery address: {o.address}
+                      Delivery address: {o.aptsuit} {o.streetadd} {o.landmark} {o.city} {o.state} {o.zip}
                     </li>
                     <li className="list-group-item">
-                      Phone Number: {o.phoneNumber}
+                      Phone Number: {o.phoneno}
                     </li>
                   </ul>
 

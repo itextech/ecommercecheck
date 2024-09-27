@@ -1,4 +1,4 @@
-const Product = require("../model/Product");
+const Product = require("../models/product");
 const { errorHandler } = require("../helpers/dbErrorHandler");
 const formidable = require("formidable");
 const _ = require("lodash");

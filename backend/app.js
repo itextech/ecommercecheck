@@ -4,7 +4,7 @@ require("dotenv").config();
 const morgan = require("morgan");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const expressValidator = require("express-validator");
+const expressvalidator = require("express-validator");
 const helmet = require("helmet");
 const path = require("path");
 const compression = require("compression");
@@ -38,8 +38,8 @@ app.use(
   })
 );
 app.use(cookieParser());
-app.use(expressValidator());
-app.use(cors(process.env.CLIENT_URL));
+app.use(expressvalidator());
+app.use(cors());
 
 // routes
 app.use("/api", auth);
@@ -48,14 +48,11 @@ app.use("/api", category);
 app.use("/api", product);
 app.use("/api", braintree);
 app.use("/api", order);
-
-// serve static asstes if in production
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-}
+app.use("/_healthz", (request, response) => {
+	response.json({
+		message : "I am healthy"
+	})
+})
 const port = process.env.PORT || 8000;
 
 app.listen(port, () => console.log(`Server running on port ${port} 🎆`));

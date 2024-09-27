@@ -1,5 +1,5 @@
 //Sign Up
-const User = require('../model/User')
+const User = require('../models/user')
 const { errorHandler } = require('../helpers/dbErrorHandler')
 exports.signup = (req, res) => {
   console.log('req.body', req.body)

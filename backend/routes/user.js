@@ -1,8 +1,8 @@
 const express = require("express");
 const router=express.Router();
-const {requireSignin,isAuth,isAdmin}=require('../controllers/auth');
-const {userById,read,update,purchaseHistory}=require('../controllers/user');
-//const {userSignupValidator}=require("../validator")
+const {requireSignin,isAuth,isAdmin}=require('../controller/auth');
+const {userById,read,update,purchaseHistory}=require('../controller/user');
+//const {userSignupvalidator}=require("../validator")
 router.get('/secret/:userId',requireSignin,isAuth,isAdmin,(req,res)=>{
     res.json({
         user:req.profile
